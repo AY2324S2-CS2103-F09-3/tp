@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.INCORRECT_PREFIX_MAP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import seedu.address.commons.core.index.Index;
@@ -23,7 +24,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
     public NoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-            PREFIX_NOTE);
+            INCORRECT_PREFIX_MAP, PREFIX_NOTE);
 
         Index index;
         try {

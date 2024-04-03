@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -19,13 +21,37 @@ public class ArgumentTokenizer {
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param prefixes   Prefixes to tokenize the arguments string with
-     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     * @param argsString            Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param incorrectPrefixes     A list of incorrect prefixes to check against.
+     * @param prefixes              Prefixes to tokenize the arguments string with
+     * @return                      ArgumentMultimap object that maps prefixes to their arguments
      */
-    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
-        List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
-        return extractArguments(argsString, positions);
+    public static ArgumentMultimap tokenize(String argsString, HashMap<Prefix,
+            List<String>> incorrectPrefixes, Prefix... prefixes) {
+        String correctedArgsString = fixIncorrectPrefixes(argsString, incorrectPrefixes);
+        List<PrefixPosition> positions = findAllPrefixPositions(correctedArgsString, prefixes);
+        return extractArguments(correctedArgsString, positions);
+    }
+
+    /**
+     * Corrects incorrect prefixes in an arguments string using a provided mapping.
+     *
+     * @param argsString The string containing potentially incorrect prefixes.
+     * @param incorrectPrefixes A map of correct prefixes to their respective list of common incorrect variations.
+     * @return The corrected arguments string with all known incorrect prefixes replaced by their correct versions.
+     */
+    public static String fixIncorrectPrefixes(String argsString, HashMap<Prefix, List<String>> incorrectPrefixes) {
+        // Iterate over each entry in the incorrectPrefixes map
+        for (Map.Entry<Prefix, List<String>> entry : incorrectPrefixes.entrySet()) {
+            Prefix correctPrefix = entry.getKey();
+            List<String> incorrectPrefixList = entry.getValue();
+
+            // Replace each incorrect prefix with the correct one
+            for (String incorrectPrefix : incorrectPrefixList) {
+                argsString = argsString.replace(incorrectPrefix, correctPrefix.getPrefix());
+            }
+        }
+        return argsString;
     }
 
     /**
