@@ -17,6 +17,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOTE = new Prefix("nt/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_APPOINTMENT = new Prefix("ap/");
+    public static final Prefix PREFIX_SUBJECT = new Prefix("s/");
+    public static final Prefix PREFIX_LEVEL = new Prefix("l/");
 
     /*
        Incorrect but acceptable prefixes. We may add more as required.
@@ -26,14 +28,18 @@ public class CliSyntax {
     static {
         // Populate the map with common incorrect prefixes
         INCORRECT_PREFIX_MAP.put(PREFIX_NAME, Arrays.asList("name/", "nae/", "nam/"));
-        INCORRECT_PREFIX_MAP.put(PREFIX_PHONE, Arrays.asList("phone/", "phon/", "pho/", "ph/"));
-        INCORRECT_PREFIX_MAP.put(PREFIX_EMAIL, Arrays.asList("email/", "emai/", "eml/", "em/", "ema/"));
+        INCORRECT_PREFIX_MAP.put(PREFIX_PHONE, Arrays.asList("phone/", "phon/", "pho/", "ph/", "hp/" , "handphone/"));
+        INCORRECT_PREFIX_MAP.put(PREFIX_EMAIL, Arrays.asList("email/", "emai/", "eml/", "em/", "ema/", "mail/"));
         INCORRECT_PREFIX_MAP.put(PREFIX_ADDRESS, Arrays.asList("address/", "addr/", "add/",
                 "ad/", "addres/", "adress/"));
-        INCORRECT_PREFIX_MAP.put(PREFIX_NOTE, Arrays.asList("note/", "not/", "nt/"));
+        INCORRECT_PREFIX_MAP.put(PREFIX_NOTE, Arrays.asList("note/", "not/", "nt/", "nte/"));
         INCORRECT_PREFIX_MAP.put(PREFIX_TAG, Arrays.asList("tag/", "ta/", "tg/"));
         INCORRECT_PREFIX_MAP.put(PREFIX_APPOINTMENT, Arrays.asList("appointment/", "appt/", "apt/",
-                "appoint/", "app/"));
+                "appoint/", "app/", "appointmen/"));
+        INCORRECT_PREFIX_MAP.put(PREFIX_SUBJECT, Arrays.asList("subject/", "subj/", "sub/",
+                "subjec/", "subjet/", "subje/", "su/", "ubject/"));
+        INCORRECT_PREFIX_MAP.put(PREFIX_LEVEL, Arrays.asList("level/", "lvl/", "leve/",
+                "lv/", "le/", "lev/", "lvel/", "evel/"));
     }
 
 
