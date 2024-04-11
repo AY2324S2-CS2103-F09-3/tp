@@ -69,6 +69,8 @@ TutorRec is a **desktop app for home tutors to manage student contacts, optimize
 
     * Names are not case-sensitive, `John Doe` is the same name as `JOhn dOE`, however, whitespaces do differentiate names apart, e.g., `Mary Anne` is a different name (and person) from `Maryanne`.
 
+* TutorRec is currently **not resizable**
+
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
@@ -93,10 +95,15 @@ Below lists the requirements for each to be a valid field.
     - May contain the following special characters `+_.-`
     - May not begin with the above mentioned special characters
   - `domain` must adhere to the following restrictions:
-    - end with a valid label which is at least two characters long
-    - domain start and end labels which start and end with alphanumeric characters
-    - domain start and end labels which are separated by hyphens only, if applicable
-  - With these restrictions in mind, the following are some valid and invalid commands:
+    - contain only letters, numbers, and dashes (`-`), note that hyphens **cannot** be the first or last characters of the domain
+    - the final part of the domain:
+      - is defined by a `.` to separate it from other parts of the domain
+      - is defined by the entire domain if no `.` is present
+      - must be at least two characters long
+    - ergo, the following are examples of domains which are valid and invalid:
+      - `cc`, `test.com`, `name-separator.gov` are valid
+      - `a`, `t*.ab`, `invalid.sep-` are not valid
+  - With these restrictions in mind, the following are some valid and invalid emails:
     - `alex@example.com`, `jorge@website.site.com`, `jack_jane.john@example.com` are valid.
     - `alex@@example.com`, `jorge@website.site.com-`, `jack&jane*john@example.com` are not valid.
 - `Address`: Must not be blank or contain only spaces.
@@ -139,7 +146,7 @@ Examples:
 * `add n/Abel nt/exstudent ap/12:00-15:00 SUN ap/18:00-22:00 TUE`
 
 Only the "Name" field is mandatory. If you do not wish to have the other fields to have values, you can add the person
-in without the corresponding tag, or leaving the tag blank.
+in without the corresponding prefix, or leaving the prefix blank.
 
 For example:
 * `add n/John`
@@ -180,7 +187,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it. Appointments work similarly (i.e. typing `ap/` with no appointments after it clears all appointments)
-* You can remove fields (except for name) by typing the tag for the relevant field and leaving it blank.
+* You can remove fields (except for name) by typing the prefix for the relevant field and leaving it blank.
 
 Examples:
 *  `edit 1 p/91234567 e/jj@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `jj@example.com` respectively.
