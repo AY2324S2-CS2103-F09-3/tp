@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutorRec is a **desktop app for 1-to-1 home tutors to manage student contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorRec can get your contact management tasks done faster than traditional GUI apps.
+TutorRec is a **desktop app for 1-to-1 primary school home tutors to manage student contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TutorRec can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
