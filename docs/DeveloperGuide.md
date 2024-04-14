@@ -190,6 +190,18 @@ TutorRec is able to add notes to each student. They are added as a field (`/nt`)
 
 `edit 1 /nt "This student is very good at math, but struggles with English."` will edit the person on index 1 to have the note "This student is very good at math, but struggles with English."
 
+### Duplicate contacts
+#### Implementation
+
+In TutorRec, contacts are uniquely identified by their names. No two contacts can have the exact same name, ensuring that duplicate contacts are not created.
+
+**Case Insensitivity**: Contact names in TutorRec are not case-sensitive. For example, 'John Doe' and 'JOhn dOE' are treated as the same name.
+
+**Whitespace Sensitivity**: Unlike case sensitivity, whitespaces in names do affect differentiation. Thus, 'Mary Anne' and 'Maryanne' are recognized as distinct names due to the difference in whitespace.
+
+**Handling Potential Duplicates**: Whenever a user attempts to add or edit a contact, TutorRec checks for names that might be similar by ignoring differences in case or whitespace. If a potential duplicate is detected, the user is warned when the contact is added.
+
+**Contact Information Flexibility**: Unlike names, a contact's phone number and email address do not have to be unique in TutorRec. This allows for scenarios where a single contact detail, such as a phone number or email, might be associated with multiple contacts, such as a parent with several children enrolled. This design decision facilitates easier management of family-related records, ensuring that it is permissible for different contacts to share identical contact information.
 ### Listing Students
 
 #### Implementation

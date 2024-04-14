@@ -132,7 +132,7 @@ Below lists the requirements for each to be a valid field.
   - `13:00-11:00 MON`, `16:0000-19:1234 MON`, `16:00-17:00 SUNDAY` are not valid.
   - Overlapping appointments between students are strictly not allowed as TutorRec is for tutors who provide 1-to-1 tutoring.
 
-### Duplicate detection  for names
+### Duplicate detection  for names and contacts
 
 * TutorRec does not allow for duplicate contacts, and contacts are differentiated by their unique names.
   
@@ -144,6 +144,8 @@ Below lists the requirements for each to be a valid field.
 
   * When adding or editing a contact, if a similar name is detected, regardless of case or whitespace differences, users 
     are warned about potential duplicates.
+
+* In TutorRec, a contact’s phone number and email address do not need to be unique. This flexibility allows you to save the same contact details for parents who have multiple children enrolled with you. As such, it is acceptable for different contacts to share the same phone number and email address.
 
 ### Viewing help : `help`
 
