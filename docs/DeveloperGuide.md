@@ -5,6 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
@@ -18,6 +19,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -87,6 +89,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -117,6 +121,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -192,6 +198,8 @@ All existing appointments are stored in `Model` in a `DisjointAppointmentList`. 
 `AppointmentList` and `DisjointAppointmentList` to allow for easy utility of `AppointmentList` in storing and working with
 parsed appointments.
 
+<div style="page-break-after: always;"></div>
+
 ### Notes for students
 #### Implementation
 
@@ -211,6 +219,9 @@ In TutorRec, contacts are uniquely identified by their names. No two contacts ca
 **Handling Potential Duplicates**: Whenever a user attempts to add or edit a contact, TutorRec checks for names that might be similar by ignoring differences in case or whitespace. If a potential duplicate is detected, the user is warned when the contact is added.
 
 **Contact Information Flexibility**: Unlike names, a contact's phone number and email address do not have to be unique in TutorRec. This allows for scenarios where a single contact detail, such as a phone number or email, might be associated with multiple contacts, such as a parent with several children enrolled. This design decision facilitates easier management of family-related records, ensuring that it is permissible for different contacts to share identical contact information.
+
+<div style="page-break-after: always;"></div>
+
 ### Listing Students
 
 #### Implementation
@@ -222,6 +233,8 @@ TutorRec is also able to list all current students in the address book. Note tha
 The example shown below will describe the process for listing all students during the `list` command.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -287,6 +300,8 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -371,6 +386,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | home tutor who just moved abroad | remove previous clients I cannot tutor due to the distance gap | keep my schedule clean |
 | `* *` | home tutor who just moved abroad | ways of tagging my students | keep track of different needs arising due to cultural differences |
 
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -627,6 +643,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -651,6 +668,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
