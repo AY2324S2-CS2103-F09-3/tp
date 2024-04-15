@@ -171,20 +171,26 @@ Appointments are added with the field (`/ap`) when doing an `add` or `edit` comm
 and an appointment on Monday from 12:00 to 13:00 to the contact list.
 
 The following diagram describes the process of adding a valid Person appointment with the `add` command:
+
 ![AddSequenceDiagramAppointment](images/AddAppointmentSequenceDiagramMain.png)
 
 The appointments, after being parsed, are stored in a list of appointments within `Person`.
 This is implemented as an `AppointmentList` field.
-To prevent appointment overlap, we check in two ways:
+To prevent appointment overlap, we check both
 1.  `Appointment` overlap within `Person`'s `AppointmentList` and
-2. `Appointment` overlap between `AppointmentList` and the `DisjointAppointmentList` stored in `Model`.
-
-
+2. `Appointment` overlap between the appointments in `AppointmentList` and the existing appointments in `Model`.
 
 ![AddSequenceDiagramRefFrame](images/AddAppointmentSequenceDiagramCheck.png)
 
 
 Note that certain details, such as other fields in a `Person` have been omitted for brevity.
+
+
+**Design Considerations**
+
+All existing appointments are stored in `Model` in a `DisjointAppointmentList`. We chose to make this distinction between
+`AppointmentList` and `DisjointAppointmentList` to allow for easy utility of `AppointmentList` in storing and working with
+parsed appointments.
 
 ### Notes for students
 #### Implementation
