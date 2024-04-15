@@ -23,6 +23,8 @@ Class Phone
 Class Tag
 Class Appointment
 Class Note
+class Subject
+class Level
 
 Class I #FFFFFF
 }
@@ -48,7 +50,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-Person *--> "*" Note
+Person *--> Note
+Person *--> Level
+Person *--> "0...4" Subject
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
@@ -61,6 +65,8 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 Email -[hidden]right-> Tag
+Tag -[hidden]right-> Subject
+Subject -[hidden]right-> Level
 
 ModelManager --> "~* filtered" Person
 @enduml
