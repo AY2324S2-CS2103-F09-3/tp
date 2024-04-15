@@ -160,7 +160,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT] [t/TAG] [s/SUBJECT] [l/LEVEL]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT]… [t/TAG]… [s/SUBJECT]… [l/LEVEL]​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags, and any number of appointments (including 0).
@@ -181,9 +181,16 @@ For example:
 Both create the same person in the address book (i.e. a person named "John" with no address).
 The same logic applies to the other fields.
 
+
 <div markdown="span" class="alert alert-primary">:warning: **Note:**
 New appointments **must not overlap with each other** and should not overlap with existing appointments. 
 </div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+When it comes to notes and levels, TutorRec will only consider the final prefix in cases where there are multiple prefixes.
+</div>
+
+For example, with the command: `add n/John l/p1 l/p2`, TutorRec will only consider `l/p2`.
 
 ### Listing all persons : `list`
 
@@ -219,6 +226,12 @@ Examples:
 *  `edit 1 p/91234567 e/jj@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `jj@example.com` respectively.
 *  `edit 2 n/Monica Chng t/` Edits the name of the 2nd person to be `Monica Chng` and clears all existing tags.
 *  `edit 3 n/Bobby Brown p/` Edits the name of the 3rd person to be `Bobby Brown` and removes the `phone` field.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+When it comes to notes and levels, TutorRec will only consider the final prefix in cases where there are multiple prefixes.
+</div>
+
+For example, with the command: `edit 1 l/p1 l/p2`, TutorRec will only consider `l/p2`.
 
 ### Locating persons by name : `find`
 
@@ -315,8 +328,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT] [t/TAG] [s/SUBJECT] [l/LEVEL]…​` <br> e.g., `add n/Jun Jie p/98765432 e/jj@example.com a/Clementi Ave 3, block 442, #06-01 s/MATH`
-**View appointments** | `appointments [DAY]`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT]… [t/TAG]… [s/SUBJECT]… [l/LEVEL]​` <br> e.g., `add n/Jun Jie p/98765432 e/jj@example.com a/Clementi Ave 3, block 442, #06-01 s/MATH`
+**View** | `appointments`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT] [t/TAG] [s/SUBJECT] [l/LEVEL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
