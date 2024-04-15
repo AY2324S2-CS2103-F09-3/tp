@@ -50,9 +50,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-Person *--> "*" Note
+Person *--> Note
 Person *--> Level
-Person *--> "*" Subject
+Person *--> "0...4" Subject
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
