@@ -627,7 +627,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
