@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Existing AB3 code structure and implementation was referenced for new TutorRec features. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -296,13 +296,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -321,7 +314,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* busy home tutor
+* busy home tutor for primary school students
 * has a need to manage a large number of students
 * prefer desktop apps over other types
 * can type fast
@@ -369,7 +362,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | home tutor who just moved abroad | remove previous clients I cannot tutor due to the distance gap | keep my schedule clean |
 | `* *` | home tutor who just moved abroad | ways of tagging my students | keep track of different needs arising due to cultural differences |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -667,16 +659,19 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Open a terminal inside the folder containing the jar file and run `java -jar tutorrec.jar` <br>Expected: Shows the GUI with a set of sample persons. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by running `java -jar tutorrec.jar` in the folder containing the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Shutting down
+
+   1. Use the `exit` command or click on the close window button on the title bar 
+   of TutorRec.
 
 ### Deleting a person
 
@@ -693,15 +688,32 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Viewing all appointments / appointments on a specific day
+
+1. Viewing all appointments
+   1. Prerequisites: TutorRec is running and contains persons with appointments. Each day of the week has at least 1 appointment belonging to any person. The current displayed list of persons is displaying all persons.
+   2. Test case: `appointments`
+   <br> Expected: All appointments of the persons currently displayed in the list are displayed.
+2. Viewing appointments on a specific day
+   1. Prerequisites: TutorRec is running and contains persons with appointments. There is at least one appointment scheduled on Monday belonging to any person in the current displayed list.
+   2. Test case: `appointments MON`
+   <br> Expected: Appointments scheduled on Monday of the persons current displayed in the list are displayed.
+
+### Viewing details of a person
+
+1. Viewing details of a person currently displayed in the list
+   1. Prerequisites: There is at least one person in the current displayed list.
+   2. Run `view 1`.
+   <br> Expected: All details of the person are displayed in the window on the right. 
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Open a terminal and run `java -jar tutorrec.jar` in the folder containing the jar file. This will cause TutorRec to generate a data folder containing addressbook.json which stores all person data.
+   2. Exit TutorRec.
+   3. Delete the addressbook.json file in the data folder. 
+   4. Run `java -jar tutorrec.jar` in the terminal again. <br>Expected: TutorRec regenerates the data file containing some sample persons.
 
 --------------------------------------------------------------------------------------------------------------------
 
