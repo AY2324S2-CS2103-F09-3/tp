@@ -211,7 +211,7 @@ The index **must be a positive integer** 1, 2, 3, ...
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT] [t/TAG] [s/SUBJECT] [l/LEVEL]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT]…​ [t/TAG]…​ [s/SUBJECT]…​ [l/LEVEL]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list.
 The index **must be a positive integer** 1, 2, 3, …​
@@ -220,7 +220,9 @@ The index **must be a positive integer** 1, 2, 3, …​
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it. Appointments work similarly (i.e. typing `ap/` with no appointments after it clears all appointments)
-* You can remove fields (except for name) by typing the prefix for the relevant field and leaving it blank.
+* You can remove fields (except for name) by typing the prefix for the relevant field and leaving it blank.   
+* Note that while the edit command format specifies that the fields `nt/` and `l/` accepts one argument only,
+    TutorRec v1.4 still accept multiple inputs, however, only the last input will be processed.
 
 Examples:
 *  `edit 1 p/91234567 e/jj@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `jj@example.com` respectively.
@@ -332,7 +334,7 @@ Action | Format, Examples
 **View** | `appointments`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT] [t/TAG] [s/SUBJECT] [l/LEVEL]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nt/NOTE] [ap/APPOINTMENT]…​ [t/TAG]…​ [s/SUBJECT]…​ [l/LEVEL]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **View person details** | `view INDEX`
