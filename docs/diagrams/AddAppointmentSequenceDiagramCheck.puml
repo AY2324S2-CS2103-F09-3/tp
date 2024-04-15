@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "toAdd:Person" as Person MODEL_COLOR
+participant "model:Model" as Model MODEL_COLOR
+participant "aps:AppointmentList" as AppointmentList MODEL_COLOR
+end box
+
+[-> AddCommand : checkAppointmentOverlap(model)
+activate AddCommand
+
+AddCommand -> Person : getAppointments()
+activate Person
+
+Person -> AddCommand : aps
+deactivate Person
+
+AddCommand -> Model : appointmentsOverlap(aps)
+activate Model
+
+Model -> AddCommand : false
+deactivate Model
+
+AddCommand -> AppointmentList : isOverlapping()
+activate AppointmentList
+
+AppointmentList -> AddCommand : false
+deactivate
+
+[<- AddCommand
+
+destroy AddCommand
+
+@enduml
