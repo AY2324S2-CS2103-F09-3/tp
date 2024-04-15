@@ -16,6 +16,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.appointment.DisjointAppointmentList;
 import seedu.address.model.person.Person;
 
@@ -68,16 +69,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        // Overlapping appointment detection
-        // between appointments to be added and existing appointments
-        if (model.appointmentsOverlap(toAdd.getAppointments().asUnmodifiableObservableList())) {
-            throw new CommandException(DisjointAppointmentList.MESSAGE_CONSTRAINTS);
-        }
-
-        // between two appointments to be added
-        if (Appointment.hasOverlapping(toAdd.getAppointments().asUnmodifiableObservableList())) {
-            throw new CommandException(DisjointAppointmentList.MESSAGE_CONSTRAINTS);
-        }
+        checkAppointmentOverlap(model);
 
         // Duplicate Detection feature
         List<String> duplicateNames = model.findNearDuplicates(toAdd);
@@ -91,6 +83,19 @@ public class AddCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+    }
+
+    private void checkAppointmentOverlap(Model model) throws CommandException {
+        // between appointments to be added and existing appointments
+        AppointmentList appointments = toAdd.getAppointments();
+        if (model.appointmentsOverlap(appointments.asUnmodifiableObservableList())) {
+            throw new CommandException(DisjointAppointmentList.MESSAGE_CONSTRAINTS);
+        }
+
+        // between two appointments to be added
+        if (appointments.isOverlapping()) {
+            throw new CommandException(DisjointAppointmentList.MESSAGE_CONSTRAINTS);
+        }
     }
 
     @Override
