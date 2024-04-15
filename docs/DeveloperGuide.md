@@ -164,24 +164,33 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-One of the features of TutorRec is the ability to add appointments to a contact.
-They are added as a field (`/ap`) when doing an `add` or `edit` command, for example:
+A core feature of TutorRec is the ability to add appointments to a contact. 
+Appointments are added with the field (`/ap`) when doing an `add` or `edit` command, for instance:
 
-- `edit 1 /ap 12:00-13:00 MON` will edit the person on index 1 to have an appointment on Monday from 12:00 to 13:00.
+- `add n/John Doe /ap 12:00-13:00 MON` will add a person with the name "John Doe"
+and an appointment on Monday from 12:00 to 13:00 to the contact list.
 
-The example shown below will describe the process for a valid appointment given during an `add` command, though the process is similar to that of an `edit` command.
+The following diagram describes the process of adding a valid Person appointment with the `add` command:
 
-![AddSequenceDiagramAppointment](images/AddSequenceDiagramAppointment.png)
+![AddSequenceDiagramAppointment](images/AddAppointmentSequenceDiagramMain.png)
 
-![AddSequenceDiagramRefFrame](images/AddSequenceDiagramRefFrame.png)
-
-Here, each appointment, after being parsed, will be added to the list of appointments in each `Person`.
+The appointments, after being parsed, are stored in a list of appointments within `Person`.
 This is implemented as an `AppointmentList` field.
-To prevent appointment overlap, we check in two ways:
+To prevent appointment overlap, we check both
 1.  `Appointment` overlap within `Person`'s `AppointmentList` and
-2. `Appointment` overlap between `AppointmentList` and the `DisjointAppointmentList`.
+2. `Appointment` overlap between the appointments in `AppointmentList` and the existing appointments in `Model`.
+
+![AddSequenceDiagramRefFrame](images/AddAppointmentSequenceDiagramCheck.png)
+
 
 Note that certain details, such as other fields in a `Person` have been omitted for brevity.
+
+
+**Design Considerations**
+
+All existing appointments are stored in `Model` in a `DisjointAppointmentList`. We chose to make this distinction between
+`AppointmentList` and `DisjointAppointmentList` to allow for easy utility of `AppointmentList` in storing and working with
+parsed appointments.
 
 ### Notes for students
 #### Implementation
